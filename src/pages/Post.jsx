@@ -1,52 +1,19 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { NavLink, useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useContext } from 'react';
+import { PostContext } from '../components/Context/PostContext';
+import { NavLink } from 'react-router-dom';
 import style from './Post.module.css';
 
 export default function Post() {
-  const [posts, setPosts] = useState([]);
-  const [selectedPost, setSelectedPost] = useState(null);
-  const { id } = useParams();
-
-  useEffect(() => {
-    axios.get("http://localhost:3000/posts")
-      .then((res) => {
-        setPosts(res.data.data);
-      })
-      .catch((error) => {
-        console.error("Errore durante il recupero dei dati", error);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (id) {
-      const post = posts.find(p => p.id === parseInt(id));
-      setSelectedPost(post);
-    }
-  }, [id, posts]);
+  const { posts, deletePost } = useContext(PostContext);
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3000/posts/${id}`)
-      .then(() => {
-        setPosts(posts.filter(post => post.id !== id));
-        if (selectedPost && selectedPost.id === id) {
-          setSelectedPost(null);
-        }
-      })
-      .catch((error) => {
-        console.error("Errore durante la cancellazione", error);
-      });
-  };
-
-  const addNewPost = (newPost) => {
-    setPosts([...posts, newPost]); 
+    deletePost(id);
   };
 
   return (
     <main>
       <div className="container">
-        <Link to="/posts/form" className="btn btn-success w-100 text-center mb-3">Aggiungi una nuova ricetta</Link>
+        <NavLink to="/posts/form" className="btn btn-success w-100 text-center mb-3">Aggiungi una nuova ricetta</NavLink>
         <div className="row">
           {posts.map((post) => (
             <div className="col-12 col-sm-6 col-md-4" key={post.id}>
@@ -67,14 +34,6 @@ export default function Post() {
             </div>
           ))}
         </div>
-
-        {selectedPost && (
-          <div className="mt-5">
-            <h2>{selectedPost.titolo}</h2>
-            <p>{selectedPost.contenuto}</p>
-            <img src={selectedPost.immagine} alt={selectedPost.titolo} className="img-fluid" />
-          </div>
-        )}
       </div>
     </main>
   );

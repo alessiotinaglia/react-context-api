@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useContext } from "react";
+import { PostContext } from '../components/Context/PostContext';
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function Form({ addNewPost }) {
+export default function Form() {
+  const { addNewPost } = useContext(PostContext);
   const [newPost, setNewPost] = useState({
     titolo: '',
     contenuto: '',
