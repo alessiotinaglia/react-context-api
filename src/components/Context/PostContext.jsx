@@ -9,7 +9,7 @@ export const PostProvider = ({ children }) => {
     useEffect(() => {
         axios.get('http://localhost:3000/posts')
             .then(res => {
-                setPosts(res.data.data);                
+                setPosts(res.data.data);
             })
             .catch(error => {
                 console.error('Errore nel recupero dei post:', error);
