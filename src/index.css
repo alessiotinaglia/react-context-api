@@ -1,0 +1,52 @@
+
+h1{
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+h2{
+  font-size: 4em;
+}
+
+h3{
+  padding: 25px 250px;
+  color: white;
+}
+
+h4{
+  padding: 10px;
+  font-size: 1.3em;
+}
+
+body{
+  background-color: rgba(0, 0, 0, 0.641);
+}
+
+.contenitore{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+header {
+  height: 150px;  
+  padding: 25px;
+  font-size: 1.3em;
+}
+
+main{
+  padding-bottom: 100px;
+}
+
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333333ed;
+  color: white;
+  padding: 20px 15px;
+  text-align: center;
+  z-index: 1000; 
+}

@@ -1,0 +1,30 @@
+Card component css
+
+.containar-custom{
+    display: flex;
+    flex-wrap: wrap;
+}
+.cardCustom {
+    border-radius: 15px;
+    margin-bottom: 45px;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.7);
+    color: white;
+    aspect-ratio: 16/9;
+}
+
+.cardFotoCustom {
+    border-radius: 15px 15px 0px 0px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.cardCustom:hover {
+    scale: 1.05;
+    z-index: 1000;
+}
+
+p {
+    height: 50px;
+}
+
